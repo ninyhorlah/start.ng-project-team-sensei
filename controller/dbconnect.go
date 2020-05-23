@@ -1,4 +1,4 @@
-package model
+package controller
 
 import (
 	"database/sql"
@@ -10,8 +10,8 @@ const (
 	host = "localhost"
 	port = 8000
 	user = "postgres"
-	password = "sensei"
-	dbname = "avely"
+	password = "deswerf"
+	dbname = "forthebirds"
 )
 
 // The "db" package level variable will hold the reference to our database instance
