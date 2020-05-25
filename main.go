@@ -44,8 +44,7 @@ func main() {
 	// Registering routes and handler that we will implement
 	multi := http.NewServeMux()
 	r := mux.NewRouter().StrictSlash(true)
-	r.HandleFunc("/signin", controller.SignupGet).Methods("GET")
-	r.HandleFunc("/signin", controller.SignupPost).Methods("POST")
+	r.HandleFunc("/signup", controller.Signup).Methods("GET", "POST")
 	r.HandleFunc("/", handler).Methods("GET")
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
 

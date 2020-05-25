@@ -4,7 +4,6 @@ import (
 	"sensei-poultry-management/model"
 	"sensei-poultry-management/views"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"html/template"
@@ -14,33 +13,42 @@ import (
 
 const hashCost = 8
 
-//SignupGet renders signup ppage
+
+//Signup sWitches between requests get and post in SignupGet and SignupPost
+func Signup(w http.ResponseWriter, r*http.Request) {
+	switch r.Method {
+	case "GET":
+		SignupGet(w, r)
+	case "POST":
+		SignupPost(w, r)
+		
+	}
+}
+
+//SignupGet renders the signup ppage
 func SignupGet(w http.ResponseWriter, r *http.Request){
 	tmpl, _ :=template.ParseFiles("./templates/signup.html")
 	tmpl.Execute(w, nil)
 }
 
 
-
-// SignupPost registers an ew user in the database
+// SignupPost registers a new user in the database
 func SignupPost(w http.ResponseWriter, r *http.Request){
 	// Parse and decode the request body into a new `Credentials` instance
-	creds := &views.Credentials{}
-	err := json.NewDecoder(r.Body).Decode(creds)
-	fmt.Println(creds)
-	if err != nil {
-		// If there is something wrong with the request body, return a 400 status
-		w.WriteHeader(http.StatusBadRequest)
-		return 
+	creds := &views.Credentials{
+		Username: r.FormValue("Username"),
+		Email: r.FormValue("Email"),
+		Password: r.FormValue("Password"),
 	}
+	
 	// Salt and hash the password using the bcrypt algorithm
 	// The second argument is the cost of hashing, which we arbitrarily set as 8 (this value can be more or less, depending on the computing power you wish to utilize)
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(creds.Password), hashCost)
 	username := creds.Username
-	passkey := string(hashedPassword)
 	email :=creds.Email
-	// Next, insert the username, along with the hashed , password into the database
-	if err = model.CreateUser(username, passkey, email); err != nil {
+	passkey := string(hashedPassword)
+	// Next, insert the username, along with the email hashed , password into the database
+	if err = model.CreateUser(username, email, passkey); err != nil {
 		// If there is any issue with inserting into the database, return a 500 error
 		w.WriteHeader(http.StatusInternalServerError)
 		log.Fatal(err)
@@ -48,5 +56,5 @@ func SignupPost(w http.ResponseWriter, r *http.Request){
 	}
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(creds.Username)
-	// We reach this point if the credentials we correctly stored in the database, and the default status of 200 is sent back
+	// We reach this point if the credentials were correctly stored in the database, and the default status of 200 is sent back
 }
