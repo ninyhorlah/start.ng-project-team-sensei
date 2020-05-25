@@ -57,7 +57,7 @@ func SignupPost(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		w.WriteHeader(http.StatusCreated)
 		json.NewEncoder(w).Encode(creds.Username)
-		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		http.Redirect(w, r, "/login", http.StatusFound)
 	}
 
 }
