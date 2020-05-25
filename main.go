@@ -40,15 +40,15 @@ func main() {
 	fmt.Println(filepath.Join(".", "templates", "*.html"))
 	fmt.Println(filepath.Join(".", "templates", "*.css"))
 
-	fs := http.FileServer(http.Dir("templates/"))
+	fs := http.FileServer(http.Dir("templates/css"))
 	// Registering routes and handler that we will implement
 	multi := http.NewServeMux()
 	r := mux.NewRouter().StrictSlash(true)
 	r.HandleFunc("/signup", controller.Signup).Methods("GET", "POST")
 	r.HandleFunc("/", handler).Methods("GET")
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
+	r.PathPrefix("/css/").Handler(http.StripPrefix("/css/", fs))
 
-	multi.Handle("/static/", http.StripPrefix("/static", fs))
+	multi.Handle("/css/", http.StripPrefix("/css", fs))
 	multi.HandleFunc("/", handler)
 	// initialize our database connection
 
