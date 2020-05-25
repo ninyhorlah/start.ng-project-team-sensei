@@ -1,0 +1,116 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+   font-family: montserrat;
+}
+
+.container {
+    
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: auto;
+    width: 30%;
+    /* padding: 30px; */
+    border: none;
+    margin-top: 30px;
+    box-shadow: 0 -3px 6px rgb(182, 180, 180);
+    width: fit-content;
+}
+
+hr {
+    width: 360px;
+}
+
+ul {
+    list-style: none;
+}
+
+.sub-container1 {
+    margin: 0;
+}
+
+.sub-container1 ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: ;
+}
+
+.section-1 {
+    margin: 0;
+}
+
+.section-1 li{
+    padding: 0 5px 0 0;
+}
+
+.sub-container2 ul{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.sub-container3 ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.sub-container4 ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* .text {
+    margin-left: -50px;
+    font-size: 20px;
+    font-weight: bold;
+} */
+
+/* td{
+    padding: 0 10px 0 10px;
+    font-size: 12px;
+}
+
+.table {
+    padding: 20px 0 150px 0;
+}
+
+.happy {
+    color: rgb(57, 241, 57);
+    font-size: 18px;
+}
+
+.frowning {
+    color: red;
+    font-size: 18px;
+}
+
+.second-cont {
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+}
+
+.table-section tr{
+   border-spacing: 55px;
+}
+
+table {
+    cellspacing
+} */
+
+input {
+    width: 80px;
+    height: 30px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: rgb(236, 233, 233);
+    border: none;
+    font-size: 8px;
+}
+
+/* table {
+    padding: 15px 0 15px 0;
+    
+} */
