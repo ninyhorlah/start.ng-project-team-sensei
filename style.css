@@ -100,59 +100,34 @@ section {
 .sub-container3 ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: auto;
-    align-items: center;
+    
 }
 
 .section-3 {
     font-size: 13px;
 }
 
+.contain {
+    padding-top: 30px;
+}
+
 .tiny {
     font-size: 8px;
 }
 
+.sub-container4 {
+    font-size: 12px;
+}
 
 .sub-container4 ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    
 }
 
-
-
-
-/* td{
-    padding: 0 10px 0 10px;
-    font-size: 12px;
+.check {
+    float: right;
 }
-
-.table {
-    padding: 20px 0 150px 0;
-}
-
-.happy {
-    color: rgb(57, 241, 57);
-    font-size: 18px;
-}
-
-.frowning {
-    color: red;
-    font-size: 18px;
-}
-
-.second-cont {
-    text-align: center;
-    padding: 15px;
-    font-size: 12px;
-}
-
-.table-section tr{
-   border-spacing: 55px;
-}
-
-table {
-    cellspacing
-} */
 
 input {
     width: 80px;
@@ -166,7 +141,69 @@ input {
     font-size: 8px;
 }
 
-/* table {
-    padding: 15px 0 15px 0;
-    
-} */
+span input{
+    width: 45px;
+    height: 17px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0;
+    margin-left: 10px;
+    background-color: #A8DADC;;
+}
+
+.text-form {
+    margin:auto;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1D3557;
+    padding-bottom: 10px;
+}
+
+.contain-form {
+    padding-top: 24px;
+}
+
+.welcome {
+    width: 375px;
+    margin: auto;
+    text-align: center;
+    font-size: 10px;
+    line-height: 17px;
+    color: #1D3557; 
+    padding-top: 20px;
+}
+
+.welcome ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.image1 {
+    width: 375px;
+    position: relative;
+    margin: auto;
+    width: fit-content;
+    padding: 8px 0 20px 0;
+}
+
+.image2 {
+    position: absolute;
+    width: 375px;
+    margin: auto;
+    width: fit-content;
+    margin-bottom: -200px;
+    margin-top: -200px;
+    margin-left: 520px;
+}
+
+.footer-image {
+    width: 375px;
+    margin: auto;
+}
+
+.footer-image ul{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10px 0 20px 70px;
+}
