@@ -35,6 +35,12 @@ func main() {
 	fs := http.FileServer(http.Dir("templates/css/"))
 	// Registering routes and handler that we will implement
 	r := mux.NewRouter().StrictSlash(true)
+	r.HandleFunc("/", controller.Signin).Methods("GET") // root address renders signin page
+	r.HandleFunc("/login", controller.Login).Methods("POST")
+	r.HandleFunc("/logout", controller.Logout)
+	//r.HandleFunc("/refresh", controller.Refresh)
+	r.HandleFunc("/forbidden", controller.Forbidden)
+	//r.HandleFunc("/secret", controller.Secret)
 	r.HandleFunc("/signup", controller.Signup).Methods("GET", "POST")
 	r.PathPrefix("/css/").Handler(http.StripPrefix("/css/", fs))
 
@@ -42,6 +48,6 @@ func main() {
 	db := model.InitDB()
 	defer db.Close()
 	// start the server on port 8000
-	fmt.Println("Listening and serving.....")
+	fmt.Printf("Listening and serving on port %s.....", port)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
