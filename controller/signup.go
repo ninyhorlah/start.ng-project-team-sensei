@@ -20,6 +20,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		SignupGet(w, r)
 	case "POST":
 		SignupPost(w, r)
+		http.Redirect(w, r, "/login", http.StatusFound)
 
 	}
 }
@@ -51,13 +52,13 @@ func SignupPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		log.Println(err)
 		return
+		
 	}
+	w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(creds.Username)
+		
 
 	// We reach this point if the credentials were correctly stored in the database, and the default status of 200 is sent back
-	if r.Method == "POST" {
-		w.WriteHeader(http.StatusCreated)
-		json.NewEncoder(w).Encode(creds.Username)
-		http.Redirect(w, r, "/login", http.StatusFound)
-	}
+
 
 }
