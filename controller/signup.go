@@ -33,7 +33,7 @@ func SignupGet(w http.ResponseWriter, r *http.Request) {
 // SignupPost registers a new user in the database
 func SignupPost(w http.ResponseWriter, r *http.Request) {
 	// Parse and decode the request body into a new `Credentials` instance
-	creds := &views.Credentials{
+	creds := &views.Credential{
 		Username: r.FormValue("Username"),
 		Email:    r.FormValue("Email"),
 		Password: r.FormValue("Password"),
