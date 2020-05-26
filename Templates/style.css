@@ -24,10 +24,11 @@ body {
 
 a {
     text-decoration: none;
+    color: #000000;
 }
 
 hr {
-    width: 265px;
+    width: 95%;
     
 }
 
@@ -187,15 +188,14 @@ span input{
     padding: 8px 0 20px 0;
 }
 
-.image2 {
+/* .image2 {
     position: absolute;
     width: 375px;
     margin: auto;
     width: fit-content;
-    margin-bottom: -200px;
-    margin-top: -200px;
-    margin-left: 520px;
-}
+    margin-top: -190px;
+    margin-left: 535px;
+} */
 
 .footer-image {
     width: 375px;
@@ -207,3 +207,9 @@ span input{
     grid-template-columns: repeat(3, 1fr);
     margin: 10px 0 20px 70px;
 }
+
+/* @media only screen and (max-width: 400px) {
+    .container {
+       width: 100%;
+    }
+} */
