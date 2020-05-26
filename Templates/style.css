@@ -188,15 +188,6 @@ span input{
     padding: 8px 0 20px 0;
 }
 
-/* .image2 {
-    position: absolute;
-    width: 375px;
-    margin: auto;
-    width: fit-content;
-    margin-top: -190px;
-    margin-left: 535px;
-} */
-
 .footer-image {
     width: 375px;
     margin: auto;
@@ -207,9 +198,3 @@ span input{
     grid-template-columns: repeat(3, 1fr);
     margin: 10px 0 20px 70px;
 }
-
-/* @media only screen and (max-width: 400px) {
-    .container {
-       width: 100%;
-    }
-} */
