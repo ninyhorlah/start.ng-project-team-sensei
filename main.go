@@ -6,55 +6,42 @@ import (
 	"log"
 	"net/http"
 	"path/filepath" // so that we can make path joins compatible on all OS
-	"github.com/sensei-poultry-management/controller"
-	"github.com/sensei-poultry-management/model"
+	"github.com/startng/sensei-poultry-management/controller"
+	"github.com/startng/sensei-poultry-management/model"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
+	"strconv"
+	"os"
 	_ "github.com/lib/pq"
 )
 
 var tmpl = template.New("")
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf8")
-	tmpl := template.Must(template.ParseFiles("templates/index.html"))
-	tmpl.Execute(w, nil)
-	tmpl.ExecuteTemplate(w, "style.css", nil)
-	err := tmpl.ExecuteTemplate(w, "index.html", nil)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
 func main() {
 
-	_, err := tmpl.ParseGlob(filepath.Join(".", "templates", "*.html"))
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Unable to parse templates: %v\n", err)
-	}
-	_, err = tmpl.ParseGlob(filepath.Join(".", "templates/css", "*.css"))
-	if err != nil {
-		log.Fatalf("Unable to parse templates: %v\n", err)
+		log.Fatal("Error loading .env file")
 	}
 
+	port := os.Getenv("PORT")
+	if port == ""{
+		port = strconv.Itoa(8000)
+	}
 	fmt.Println(filepath.Join(".", "templates", "*.html"))
 	fmt.Println(filepath.Join(".", "templates", "*.css"))
 
-	fs := http.FileServer(http.Dir("templates/css"))
+	fs := http.FileServer(http.Dir("templates/css/"))
 	// Registering routes and handler that we will implement
-	multi := http.NewServeMux()
 	r := mux.NewRouter().StrictSlash(true)
 	r.HandleFunc("/signup", controller.Signup).Methods("GET", "POST")
-	r.HandleFunc("/", handler).Methods("GET")
 	r.PathPrefix("/css/").Handler(http.StripPrefix("/css/", fs))
 
-	multi.Handle("/css/", http.StripPrefix("/css", fs))
-	multi.HandleFunc("/", handler)
-	// initialize our database connection
-
+	
 	db := model.InitDB()
 	defer db.Close()
-	// start the server on port 5432
+	// start the server on port 8000
 	fmt.Println("Listening and serving.....")
-	log.Fatal(http.ListenAndServe(":5432", r))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }

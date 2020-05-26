@@ -26,7 +26,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 
 //SignupGet renders the signup ppage
 func SignupGet(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("./templates/signup.html")
+	tmpl, _ := template.ParseFiles("./templates/index.html")
 	tmpl.Execute(w, nil)
 }
 
