@@ -1,13 +1,11 @@
 package controller
 
 import (
-	"encoding/json"
 	"html/template"
 	"log"
 	"net/http"
-	"github.com/startng/sensei-poultry-management/model"
-	"github.com/startng/sensei-poultry-management/views"
 
+	"github.com/startng/sensei-poultry-management/model"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -32,19 +30,17 @@ func SignupGet(w http.ResponseWriter, r *http.Request) {
 }
 
 // SignupPost registers a new user in the database
+// SignupPost registers a new user in the database
 func SignupPost(w http.ResponseWriter, r *http.Request) {
 	// Parse and decode the request body into a new `Credentials` instance
-	creds := &views.Credential{
-		Username: r.FormValue("Username"),
-		Email:    r.FormValue("Email"),
-		Password: r.FormValue("Password"),
-	}
+
+	username := r.FormValue("Username")
+	email := r.FormValue("Email")
+	password := r.FormValue("Password")
 
 	// Salt and hash the password using the bcrypt algorithm
 	// The second argument is the cost of hashing, which we arbitrarily set as 8 (this value can be more or less, depending on the computing power you wish to utilize)
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(creds.Password), hashCost)
-	username := creds.Username
-	email := creds.Email
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), hashCost)
 	passkey := string(hashedPassword)
 	// Next, insert the username, along with the email hashed , password into the database
 	if err = model.CreateUser(username, email, passkey); err != nil {
@@ -52,13 +48,7 @@ func SignupPost(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		log.Println(err)
 		return
-		
 	}
-	w.WriteHeader(http.StatusCreated)
-		json.NewEncoder(w).Encode(creds.Username)
-		
-
+	w.Header().Set("Content-Type", "text/html;charset=utf8")
 	// We reach this point if the credentials were correctly stored in the database, and the default status of 200 is sent back
-
-
 }
