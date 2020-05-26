@@ -5,8 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"github.com/sensei-poultry-management/model"
-	"github.com/sensei-poultry-management/views"
+	"github.com/startng/sensei-poultry-management/model"
+	"github.com/startng/sensei-poultry-management/views"
 
 	"golang.org/x/crypto/bcrypt"
 )
