@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 	"path/filepath" // so that we can make path joins compatible on all OS
-	"sensei-poultry-management/controller"
-	"sensei-poultry-management/model"
+	"github.com/sensei-poultry-management/controller"
+	"github.com/sensei-poultry-management/model"
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"

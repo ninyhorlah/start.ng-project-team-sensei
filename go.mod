@@ -1,4 +1,4 @@
-module sensei-poultry-management
+module github.com/sensei-poultry-management
 
 go 1.14
 

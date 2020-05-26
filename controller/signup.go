@@ -5,8 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"sensei-poultry-management/model"
-	"sensei-poultry-management/views"
+	"github.com/sensei-poultry-management/model"
+	"github.com/sensei-poultry-management/views"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -49,7 +49,7 @@ func SignupPost(w http.ResponseWriter, r *http.Request) {
 	if err = model.CreateUser(username, email, passkey); err != nil {
 		// If there is any issue with inserting into the database, return a 500 error
 		w.WriteHeader(http.StatusInternalServerError)
-		log.Fatal(err)
+		log.Println(err)
 		return
 	}
 
