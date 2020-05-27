@@ -34,9 +34,9 @@ func SignupGet(w http.ResponseWriter, r *http.Request) {
 func SignupPost(w http.ResponseWriter, r *http.Request) {
 	// Parse and decode the request body into a new `Credentials` instance
 
-	username := r.FormValue("Username")
-	email := r.FormValue("Email")
-	password := r.FormValue("Password")
+	username := r.FormValue("name")
+	email := r.FormValue("email")
+	password := r.FormValue("password")
 
 	// Salt and hash the password using the bcrypt algorithm
 	// The second argument is the cost of hashing, which we arbitrarily set as 8 (this value can be more or less, depending on the computing power you wish to utilize)
